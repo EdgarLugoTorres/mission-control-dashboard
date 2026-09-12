@@ -246,3 +246,18 @@ h1 span {
     border-color: var(--accent);
     color: var(--text);
 }
+
+.status-pending {
+    background-color: #30251b;
+    color: #ffb45c;
+}
+
+.status-success {
+    background-color: #19352b;
+    color: #66e3a1;
+}
+
+.status-failure {
+    background-color: #3a1c20;
+    color: #ff7078;
+}

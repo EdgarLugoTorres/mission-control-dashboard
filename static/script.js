@@ -78,6 +78,7 @@ function displayMissions(missions) {
     for (const mission of missions) {
         const missionDate = new Date(mission.date);
         const missionCard = document.createElement("div");
+        const statusClass = getStatusClass(mission.status);
 
         missionCard.className = "mission-item";
 
@@ -86,7 +87,7 @@ function displayMissions(missions) {
             <p>Date: ${missionDate.toLocaleDateString()}</p>
             <p>
                 Status:
-                <span class="status-pill">${mission.status}</span>
+                <span class="status-pill ${statusClass}">${mission.status}</span>
             </p>
         `;
 
@@ -112,3 +113,17 @@ clearSearchButton.addEventListener("click", () => {
   
   displayMissions(allMissions);
 });
+
+function getStatusClass(status) {
+    const statusText = status.toLowerCase();
+
+    if (statusText.includes("success")) {
+        return "status-success";
+    }
+
+    if (statusText.includes("failure")) {
+        return "status-failure";
+    }
+
+    return "status-pending";
+}
