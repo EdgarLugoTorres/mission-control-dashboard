@@ -1,3 +1,5 @@
+let allMissions = [];
+
 async function loadLaunch() {
     const launchData = document.getElementById("launch-data");
 
@@ -44,7 +46,6 @@ async function loadNasaPhoto() {
         return;
     }
 
-
     nasaData.innerHTML = `
         <h3>${photo.title}</h3>
         <p><strong>Date:</strong> ${photo.date}</p>
@@ -59,9 +60,20 @@ async function loadMissions() {
     missionsList.innerHTML = "<p>Loading missions...</p>";
 
     const response = await fetch("/api/launches");
-    const missions = await response.json();
+    allMissions = await response.json();
+
+    displayMissions(allMissions);
+}
+
+function displayMissions(missions) {
+
+    const missionsList = document.getElementById("missions-list");
 
     missionsList.innerHTML = "";
+    document.getElementById("mission-count").textContent =
+    `Showing ${missions.length} missions`;
+
+
 
     for (const mission of missions) {
         const missionDate = new Date(mission.date);
@@ -73,11 +85,30 @@ async function loadMissions() {
             <h3>${mission.name}</h3>
             <p>Date: ${missionDate.toLocaleDateString()}</p>
             <p>
-              Status:
-              <span class="status-pill">${mission.status}</span>
+                Status:
+                <span class="status-pill">${mission.status}</span>
             </p>
         `;
 
         missionsList.appendChild(missionCard);
     }
 }
+
+const searchInput = document.getElementById("mission-search");
+
+searchInput.addEventListener("input", () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredMissions = allMissions.filter(mission =>
+        mission.name.toLowerCase().includes(searchTerm)
+    );
+    displayMissions(filteredMissions);
+});
+
+const clearSearchButton = document.getElementById("clear-search");
+
+clearSearchButton.addEventListener("click", () => {
+   
+  searchInput.value = "";
+  
+  displayMissions(allMissions);
+});

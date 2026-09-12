@@ -62,8 +62,18 @@
 
             <section id="missions-card" class="launch-card">
                 <p class="card-label">MISSION ARCHIVE</p>
+                <input  
+                    type="text"  
+                    id="mission-search"  
+                    placeholder="Search missions..." 
+                >
+
+                <button id="clear-search" class="secondary-button">
+                    Clear Search
+                </button>
 
                 <h2>Featured SpaceX Missions</h2>
+                <p id="mission-count">No missions loaded.</p>
 
                 <button class="primary-button" onclick="loadMissions()">
                     Load Missions
