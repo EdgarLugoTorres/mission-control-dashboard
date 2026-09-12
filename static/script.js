@@ -72,7 +72,10 @@ async function loadMissions() {
         missionCard.innerHTML = `
             <h3>${mission.name}</h3>
             <p>Date: ${missionDate.toLocaleDateString()}</p>
-            <p>Status: ${mission.status}</p>
+            <p>
+              Status:
+              <span class="status-pill">${mission.status}</span>
+            </p>
         `;
 
         missionsList.appendChild(missionCard);

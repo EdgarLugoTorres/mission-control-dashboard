@@ -112,6 +112,7 @@ h1 span {
 
 .launch-card {
     min-height: 180px;
+    margin-bottom: 24px;
     padding: 30px;
     border: 1px solid var(--border);
     border-radius: 10px;
@@ -162,7 +163,7 @@ h1 span {
 
 #missions-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-top: 25px;
 }
@@ -189,4 +190,16 @@ h1 span {
 .mission-item p {
     margin-bottom: 8px;
     font-size: 14px;
+}
+
+@media (max-width: 800px) {
+    #missions-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    #missions-list {
+        grid-template-columns: 1fr;
+    }
 }
