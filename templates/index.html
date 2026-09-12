@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mission Control Dashboard</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-shell">
+
+        <header class="topbar">
+            <div class="brand">MISSION CONTROL</div>
+            <div class="live-status">
+                <span class="status-dot"></span>
+                LIVE DATA
+            </div>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <p class="eyebrow">SPACE EXPLORATION SYSTEM</p>
+
+                <h1>Explore the<br><span>next mission.</span></h1>
+
+                <p class="hero-description">
+                    Track SpaceX missions and explore real launch data
+                    from around the world.
+                </p>
+
+                <button class="primary-button" onclick="loadLaunch()">
+                    Load Latest Launch
+                    <span>→</span>
+                </button>
+            </section>
+
+            <section id="launch-data" class="launch-card">
+                <p class="card-label">MISSION DATA</p>
+                <p>Click the button to load the latest launch.</p>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
