@@ -159,3 +159,34 @@ h1 span {
     color: var(--text);
     font-size: 24px;
 }
+
+#missions-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.mission-item {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: #0f0f12;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.mission-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.mission-item h3 {
+    margin-top: 0;
+    color: var(--text);
+    font-size: 18px;
+}
+
+.mission-item p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}

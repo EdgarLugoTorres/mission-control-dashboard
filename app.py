@@ -76,5 +76,40 @@ def nasa_photo():
             "details": str(error)
         }), 502
 
+@app.route("/api/launches")
+def launches():
+    try:
+        response = requests.get(
+            "https://ll.thespacedevs.com/2.2.0/launch/",
+            params={
+                "search": "SpaceX",
+                "limit": 6,
+                "ordering": "-net"
+            },
+            timeout=10
+        )
+
+        response.raise_for_status()
+        data = response.json()
+
+        missions = []
+
+        for launch in data.get("results", []):
+            status = launch.get("status") or {}
+
+            missions.append({
+                "name": launch.get("name", "Unknown mission"),
+                "date": launch.get("net", "Unknown date"),
+                "status": status.get("name", "Unknown status")
+            })
+
+        return jsonify(missions)
+
+    except requests.RequestException as error:
+        return jsonify({
+            "error": "The missions API could not be reached.",
+            "details": str(error)
+        }), 502
+
 if __name__ == "__main__":
     app.run(debug=True)
