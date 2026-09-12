@@ -27,3 +27,27 @@ async function loadLaunch() {
         <p>${launch.details || "No mission details available."}</p>
     `;
 }
+
+async function loadNasaPhoto() {
+    const nasaData = document.getElementById("nasa-data");
+
+    nasaData.innerHTML = "<p>Loading NASA's picture...</p>";
+
+    const response = await fetch("/api/nasa-photo");
+    const photo = await response.json();
+
+    if (!response.ok || photo.error) {
+        nasaData.innerHTML = `
+            <p>${photo.error}</p>
+            <p>${photo.details || "Please try again later."}</p>
+        `;
+        return;
+    }
+
+    nasaData.innerHTML = `
+        <h3>${photo.title}</h3>
+        <p><strong>Date:</strong> ${photo.date}</p>
+        <img class="nasa-image" src="${photo.image_url}" alt="${photo.title}">
+        <p>${photo.explanation}</p>
+    `;
+}
